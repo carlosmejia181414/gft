@@ -3,9 +3,6 @@ import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
-
 
 document.querySelector('#app').innerHTML = `
   <h1 class="text-center mt-5">Earnings in GFT</h1>
@@ -89,49 +86,49 @@ table.appendChild(rowFinals);
 
 });
 
-function descargarExcel() {
-  // Seleccionar la tabla
-  var tabla = document.getElementById("table-responsive");
+// function descargarExcel() {
+//   // Seleccionar la tabla
+//   var tabla = document.getElementById("table-responsive");
 
-  // Crear una matriz vacía para almacenar los datos de la tabla
-  var data = [];
+//   // Crear una matriz vacía para almacenar los datos de la tabla
+//   var data = [];
 
-  // Recorrer las filas de la tabla y agregar los datos a la matriz
-  for (var i = 0; i < tabla.rows.length; i++) {
-      var rowData = [];
-      for (var j = 0; j < tabla.rows[i].cells.length; j++) {
-          rowData.push(tabla.rows[i].cells[j].innerText);
-      }
-      data.push(rowData);
-  }
+//   // Recorrer las filas de la tabla y agregar los datos a la matriz
+//   for (var i = 0; i < tabla.rows.length; i++) {
+//       var rowData = [];
+//       for (var j = 0; j < tabla.rows[i].cells.length; j++) {
+//           rowData.push(tabla.rows[i].cells[j].innerText);
+//       }
+//       data.push(rowData);
+//   }
 
-  // Crear un nuevo libro de Excel
-  var workbook = XLSX.utils.book_new();
+//   // Crear un nuevo libro de Excel
+//   var workbook = XLSX.utils.book_new();
 
-  // Convertir la matriz de datos a una hoja de Excel
-  var worksheet = XLSX.utils.aoa_to_sheet(data);
+//   // Convertir la matriz de datos a una hoja de Excel
+//   var worksheet = XLSX.utils.aoa_to_sheet(data);
 
-  // Añadir la hoja de Excel al libro
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Tabla');
+//   // Añadir la hoja de Excel al libro
+//   XLSX.utils.book_append_sheet(workbook, worksheet, 'Tabla');
 
-  // Generar un archivo binario de Excel
-  var archivoBinario = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+//   // Generar un archivo binario de Excel
+//   var archivoBinario = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
 
-  // Convertir el archivo binario a Blob
-  var blob = new Blob([s2ab(archivoBinario)], { type: "application/octet-stream" });
+//   // Convertir el archivo binario a Blob
+//   var blob = new Blob([s2ab(archivoBinario)], { type: "application/octet-stream" });
 
-  // Descargar el archivo Excel
-  saveAs(blob, "tabla.xlsx");
-}
+//   // Descargar el archivo Excel
+//   saveAs(blob, "tabla.xlsx");
+// }
 
-// Función para convertir texto en binario
-function s2ab(s) {
-  var buf = new ArrayBuffer(s.length);
-  var view = new Uint8Array(buf);
-  for (var i = 0; i < s.length; i++) {
-      view[i] = s.charCodeAt(i) & 0xFF;
-  }
-  return buf;
-}
+// // Función para convertir texto en binario
+// function s2ab(s) {
+//   var buf = new ArrayBuffer(s.length);
+//   var view = new Uint8Array(buf);
+//   for (var i = 0; i < s.length; i++) {
+//       view[i] = s.charCodeAt(i) & 0xFF;
+//   }
+//   return buf;
+// }
 
 
