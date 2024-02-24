@@ -3,9 +3,10 @@ import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Swal from 'sweetalert2'
 
 document.querySelector('#app').innerHTML = `
-  <h1 class="text-center mt-5">Earnings in GFT</h1>
+  <h3 class="text-center fw-bold mt-5">GFT INVESTMENT</h3>
   <div class="container mt-4 ">
 
   <form id="form">
@@ -15,7 +16,7 @@ document.querySelector('#app').innerHTML = `
   </div>
   <div class="mb-3">
   <label for="exampleInputEmail1" class="form-label">Compound interest rate :</label>
-  <input class="form-control" type="text" name="tasa" id="tasa" value="3%" placeholder="3%" aria-label="default input example" disabled>
+  <input class="form-control" type="text" name="tasa" id="tasa" value="3.1%" placeholder="3%" aria-label="default input example" disabled>
 </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">How many Days :</label>
@@ -24,9 +25,9 @@ document.querySelector('#app').innerHTML = `
   <button type="submit" class="btn btn-success mt-2">Submit</button>
   </form>
 
-  <h4 class="mt-3 text-center mb-2"> Table of Profits</h4> 
-  <div id="table-responsive" class="table-responsive mt-3">
 
+  <div id="table-responsive" class="table-responsive mt-3">
+  <h5 class="mt-3 text-center mb-4 fw-bold"> TABLE OF PROFITS</h5> 
   <table class="table table-striped">
   <thead>
     <tr>
@@ -41,24 +42,45 @@ document.querySelector('#app').innerHTML = `
 </table>
 <div class="descarga">
 Descargar en Excel:
-<button  onclick="descargarExcel() class="imgButton"><img src="./excel.png" /></button>
+<button id="excel" class="imgButton"><img src="./excel.png" /></button>
 </div>
   </div>
   </div>
 `
 document.getElementById('form').addEventListener('submit', function(e){
 e.preventDefault();
-
 //get values from form
-let capital = parseFloat(document.getElementById('capital').value);
-let days = parseFloat(document.getElementById('days').value);
+let capitalInput = document.getElementById('capital').value.trim(); // Obtener el valor y eliminar espacios en blanco al inicio y al final
+let capital = parseFloat(capitalInput); // Convertir a un número de punto flotante
+let daysInput = document.getElementById('days').value.trim(); // Obtener el valor y eliminar espacios en blanco al inicio y al final
+let days = parseFloat(daysInput); // Convertir a un número de punto flotante
 let tasaVal = document.getElementById('tasa').value;
 let tasa = tasaVal.replace('%', '');
 let totalInterest = 0;
 
+if(capitalInput === ""){
+  Swal.fire({
+    icon: "error",
+    title: "Error",
+    text: "Insert your Capital Amount"
+  });
+  return;
+}
+
+if(daysInput === ""){
+  Swal.fire({
+    icon: "error",
+    title: "Error",
+    text: "Insert the day investment"
+  });
+  return;
+}
+
+let divTables = document.getElementById('table-responsive');
+divTables.style.display = 'block';
+
 let tasaP = tasa/100
 let table = document.getElementById('bodyTable');
-
 table.innerHTML = "";
 
 for (let i = 1; i <= days; i++) {
@@ -85,6 +107,12 @@ rowFinals.innerHTML = `<td colspan="2" class="text-right derecha">TOTAL</td>` +
 table.appendChild(rowFinals);
 
 });
+
+const myExcel = document.getElementById('excel');
+myExcel.addEventListener('click', function(e) {
+  console.log("holga button para");
+});
+
 
 // function descargarExcel() {
 //   // Seleccionar la tabla
