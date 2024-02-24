@@ -91,9 +91,9 @@ for (let i = 1; i <= days; i++) {
   //create line in the table
   const row =  document.createElement('tr');
   row.innerHTML = "<td>" + i + "</td>" +
-                  "<td>" + capital.toFixed(2) + "</td>" +
-                  "<td>" + interestGain.toFixed(2) + "</td>" +
-                  "<td>" + total.toFixed(2) + "</td>";
+                  "<td>" + capital.toFixed(2).toLocaleString() + "</td>" +
+                  "<td>" + interestGain.toFixed(2).toLocaleString() + "</td>" +
+                  "<td>" + total.toFixed(2).toLocaleString() + "</td>";
 
 //add information to the table
 table.appendChild(row);
@@ -101,8 +101,8 @@ capital = total;
 }
 const rowFinals = document.createElement('tr'); 
 rowFinals.innerHTML = `<td colspan="2" class="text-right derecha">TOTAL</td>` + 
-                      `<td class="negrita">${totalInterest.toFixed(2)} </td>` +
-                      `<td class="negrita">${capital.toFixed(2)} </td>`;
+                      `<td class="negrita">${totalInterest.toFixed(2).toLocaleString()} </td>` +
+                      `<td class="negrita">${capital.toFixed(2).toLocaleString()} </td>`;
                       ;
 table.appendChild(rowFinals);
 
