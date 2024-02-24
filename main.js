@@ -6,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 document.querySelector('#app').innerHTML = `
   <h1 class="text-center mt-5">Earnings in GFT</h1>
-  <div class="container mt-4">
+  <div class="container mt-4 ">
 
   <form id="form">
   <div class="mb-3">
