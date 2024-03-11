@@ -16,7 +16,7 @@ document.querySelector('#app').innerHTML = `
   </div>
   <div class="mb-3">
   <label for="exampleInputEmail1" class="form-label">Compound interest rate :</label>
-  <input class="form-control" type="text" name="tasa" id="tasa" value="3.1%" placeholder="2.8%" aria-label="default input example" disabled>
+  <input class="form-control" type="text" name="tasa" id="tasa" value="2.8%" placeholder="3%" aria-label="default input example" disabled>
 </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">How many Days :</label>
